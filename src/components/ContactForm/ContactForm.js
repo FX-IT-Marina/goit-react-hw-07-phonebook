@@ -1,11 +1,10 @@
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Formik, ErrorMessage } from 'formik';
 import { object, string } from 'yup';
-
-import React from 'react';
 import { Error, StyledForm, Button, Label, Input } from './ContactForm.styled';
-import { addContact } from 'redux/contactSlice';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContacts } from 'redux/contactSlice';
+import { addContact } from 'redux/operation';
+import { selectContacts } from 'redux/selectors';
 
 const FormError = ({ name }) => {
   return (
@@ -15,7 +14,7 @@ const FormError = ({ name }) => {
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContacts);
+  const contacts = useSelector(selectContacts);
 
   const initialValues = {
     name: '',
